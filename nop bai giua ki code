@@ -1,0 +1,75 @@
+#bai1
+import math
+
+print("--- Tìm số lớn nhất ---")
+a_max = float(input("Nhập số thứ nhất: "))
+b_max = float(input("Nhập số thứ hai: "))
+c_max = float(input("Nhập số thứ ba: "))
+
+so_lon_nhat = max(a_max, b_max, c_max)
+print(f"Số lớn nhất là: {so_lon_nhat}")
+
+print("\n" + "-"*20 + "\n")
+print("--- Giải phương trình ax^2 + bx + c = 0 ---")
+a = float(input("Nhập a (a khác 0): "))
+b = float(input("Nhập b: "))
+c = float(input("Nhập c: "))
+
+if a == 0:
+    if b == 0:
+        print("Phương trình vô nghiệm" if c != 0 else "Phương trình vô số nghiệm")
+    else:
+        print(f"Phương trình bậc nhất có nghiệm x = {-c/b}")
+else:
+    delta = b**2 - 4*a*c
+    if delta < 0:
+        print("Phương trình vô nghiệm")
+    elif delta == 0:
+        print(f"Nghiệm kép x = {-b/(2*a)}")
+    else:
+        x1 = (-b + math.sqrt(delta)) / (2*a)
+        x2 = (-b - math.sqrt(delta)) / (2*a)
+        print(f"x1 = {x1}\nx2 = {x2}")
+#bai2
+import math
+
+def la_so_nguyen_to(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+print("--- Cac so le tu 17 den 111 ---")
+for i in range(17, 112):
+    if i % 2 != 0:
+        print(i, end=" ")
+print("\n")
+
+print("--- Cac so nguyen to tu 17 den 111 ---")
+for i in range(17, 112):
+    if la_so_nguyen_to(i):
+        print(i, end=" ")
+print()
+#bai4
+n = int(input("Nhap so luong phan tu N: "))
+mang = []
+
+for i in range(n):
+    gia_tri = int(input(f"Nhap phan tu thu {i+1}: "))
+    mang.append(gia_tri)
+
+print(f"\nMang ban dau: {mang}\n")
+
+for i in range(n - 1):
+    vi_tri_max = i
+    for j in range(i + 1, n):
+        if mang[j] > mang[vi_tri_max]:
+            vi_tri_max = j
+            
+    mang[i], mang[vi_tri_max] = mang[vi_tri_max], mang[i]
+    
+    print(f"Buoc {i+1}: {mang}")
+
+print(f"\nMang sau khi sap xep giam dan: {mang}")
